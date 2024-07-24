@@ -1,0 +1,29 @@
+<p-dialog header="Add category" [modal]="true" [(visible)]="showCreateCategoryDialog" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-5">Create a new category</span>
+  <div class="flex align-items-center gap-3 mb-3">
+    <label class="font-semibold w-6rem">Category prefix</label>
+    <input pInputText class="flex-auto" autocomplete="off" [(ngModel)]="categoryToSave"/>
+  </div>
+
+  <div class="flex justify-content-end gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="showCreateCategoryDialog = false; categoryToSave = ''"/>
+    <p-button label="Save" (onClick)="saveCategory()"/>
+  </div>
+</p-dialog>
+
+<div class="p-3">
+  <h1 class="text-center">Inventory classifier</h1>
+  <div class="flex gap-2 justify-content-center">
+    <input type="text" pInputText [(ngModel)]="product" placeholder="Type product code">
+    <p-button label="Save" (onClick)="saveProduct()"></p-button>
+  </div>
+</div>
+
+<ul>
+  @for (summary of mappedSummary(); track $index) {
+    <li>
+      <span>{{summary.category}}-{{summary.counting}}</span>
+    </li>
+  }
+</ul>
+
